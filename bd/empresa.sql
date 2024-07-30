@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-07-2024 a las 15:55:47
+-- Tiempo de generación: 30-07-2024 a las 18:29:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,7 +39,21 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2024_06_08_134300_create_persona_table', 1),
-(2, '2024_06_08_151147_add_c_per_sexo_to_empresa_table', 2);
+(2, '2024_06_08_151147_add_c_per_sexo_to_empresa_table', 2),
+(3, '2014_10_12_100000_create_password_resets_table', 3),
+(4, '2024_07_29_200135_add_image_field_to_persona_table', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +63,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `persona` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `cPerApellido` char(50) NOT NULL,
   `cPerNombre` char(50) NOT NULL,
   `cPerDireccion` varchar(100) NOT NULL,
@@ -67,14 +82,14 @@ CREATE TABLE `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`id`, `cPerApellido`, `cPerNombre`, `cPerDireccion`, `dPerFecNac`, `nPerEdad`, `cPerSexo`, `nPerSueldo`, `cPerRnd`, `nPerEstado`, `created_at`, `updated_at`, `remember_token`) VALUES
-(1, 'Martinez', 'Luis', 'Enriquez Segoviano 241', '2010-06-02', 25, 'Masculino', 1500.00, 'P001', '1', '2024-06-07 15:05:42', NULL, NULL),
-(2, 'Rodriguez', 'Jose', 'Enriquez Segonviano 237', '2024-06-03', 20, 'Masculino', 1200.00, 'P002', '1', '2024-06-07 15:05:59', NULL, NULL),
-(4, 'Gonzales', 'Nicolas', 'Enriquez Segoviano 447', '2014-06-24', 35, 'Masculino', 2000.00, 'P004', '1', '2024-06-07 15:07:15', NULL, NULL),
-(5, 'Tapia', 'Daniel', 'Enriquez Segoviano 742', '2015-06-04', 40, 'Masculino', 4000.00, 'P005', '1', '2024-06-07 15:07:15', NULL, NULL),
-(6, 'Garcia', 'Jose', 'Enrique', '2024-05-28', 18, 'Masculino', 2000.00, NULL, '1', '2024-06-15 20:25:31', '2024-06-22 20:40:54', NULL),
-(7, 'Martinez', 'Lucho', 'Enrique 89', '2024-06-05', 20, 'Masculino', 2000.00, NULL, '0', '2024-06-22 21:10:34', '2024-06-22 21:10:45', NULL),
-(8, 'Garcia', 'Fernando', 'Rosas 147', '2024-02-27', 25, 'Masculino', 2000.00, NULL, '1', '2024-07-23 18:05:22', '2024-07-23 18:09:38', NULL);
+INSERT INTO `persona` (`id`, `image`, `cPerApellido`, `cPerNombre`, `cPerDireccion`, `dPerFecNac`, `nPerEdad`, `cPerSexo`, `nPerSueldo`, `cPerRnd`, `nPerEstado`, `created_at`, `updated_at`, `remember_token`) VALUES
+(1, NULL, 'Martinez', 'Luis', 'Enriquez Segoviano 241', '2010-06-02', 25, 'Masculino', 1500.00, 'P001', '1', '2024-06-07 15:05:42', NULL, NULL),
+(2, 'images/JRCwAz00dRsG7GX7IxP35VkH4WRgFc2arXjlSzJp.jpg', 'Rodriguez', 'Jose', 'Enriquez Segonviano 237', '2024-06-03', 20, 'Masculino', 1200.00, 'P002', '1', '2024-06-07 15:05:59', '2024-07-30 21:21:47', NULL),
+(4, NULL, 'Gonzales', 'Nicolas', 'Enriquez Segoviano 447', '2014-06-24', 35, 'Masculino', 2000.00, 'P004', '1', '2024-06-07 15:07:15', NULL, NULL),
+(5, 'images/fpwkYbAbmw3f2DLC32tu5wo5K93olqrkYXGKvx98.jpg', 'Tapia', 'Daniel', 'Enriquez Segoviano 742', '2015-06-04', 40, 'Masculino', 4000.00, 'P005', '1', '2024-06-07 15:07:15', '2024-07-30 21:18:01', NULL),
+(7, NULL, 'Martinez', 'Lucho', 'Enrique 89', '2024-06-05', 20, 'Masculino', 2000.00, NULL, '0', '2024-06-22 21:10:34', '2024-06-22 21:10:45', NULL),
+(8, 'images/MLixPrysXPEiCE3FBlKN99HmMjtGAZqagZyLw53s.jpg', 'Garcia', 'Fernando', 'Rosas 147', '2024-02-27', 25, 'Masculino', 2000.00, NULL, '1', '2024-07-23 18:05:22', '2024-07-30 21:18:28', NULL),
+(9, 'images/MTymUKoS3SabJ26KTO9yhlU5RnVGp8uOsP7kMZEh.jpg', 'Apellido 8', 'Persona 8', 'Direccion 8', '2024-07-28', 23, 'Masculino', 2500.00, NULL, '1', '2024-07-30 20:44:41', '2024-07-30 21:18:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,6 +126,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
@@ -132,13 +153,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
